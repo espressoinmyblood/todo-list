@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ToDo from './ToDo';
 import ToDoForm from './ToDoForm';
 
-function ToDoList() {
+const ToDoList = () => {
 
     const [todos, setTodos] = useState([]);
 
@@ -17,11 +17,11 @@ function ToDoList() {
     };
 
     const updateTodo = (todoId, newValue) => {
-        if (!newValue.text || /^\s*$/.test(newValue.text)) {
+        if (/^\s*$/.test(newValue.text) || newValue.text) {
             return
         };
 
-        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item))
+        setTodos(prev => prev.map(item => (item.id === todoId ? {...item, text: newValue} : item))
         );
     };
 

@@ -21,6 +21,12 @@ const ToDoForm = (props) => {
             text: input
         }
 
+        if (props.edit) {
+            props.onSubmit(input)
+            setInput('');
+            return;
+        }  
+            
         props.addTodo(todo);
 
         setInput('');
